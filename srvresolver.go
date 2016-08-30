@@ -9,6 +9,11 @@ import (
 )
 
 func ResolveSRV(record string) (ip string, port string, err error) {
+	// try split first, since the input may be a host:port combination
+	ip, port, err = net.SplitHostPort(record)
+	if err == nil {
+		return
+	}
 	config, _ := dns.ClientConfigFromFile("etc/resolv.conf")
 
 	qType, _ := dns.StringToType["SRV"]
