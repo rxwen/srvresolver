@@ -14,7 +14,7 @@ func ResolveSRV(record string) (ip string, port string, err error) {
 	if err == nil {
 		return
 	}
-	config, _ := dns.ClientConfigFromFile("etc/resolv.conf")
+	config, _ := dns.ClientConfigFromFile("/etc/resolv.conf")
 
 	qType, _ := dns.StringToType["SRV"]
 	name := dns.Fqdn(record)
